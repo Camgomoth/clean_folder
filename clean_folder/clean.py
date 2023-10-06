@@ -161,9 +161,14 @@ def get_folder_objects(root_path):
             except OSError:
                 pass
 
-def main(folder_path):
-    scan.scan(folder_path)
-
+def main():
+    path = sys.argv[1]
+    print(f"Start in {path}")
+    
+    folder_path = Path(path)
+  
+    scan(folder_path)
+    
     for file in images:
         hande_file(file, folder_path, "IMAGES")
 
@@ -183,10 +188,7 @@ def main(folder_path):
         handle_archive(file, folder_path, "ARCHIVES")
 
     get_folder_objects(folder_path)
-    path = sys.argv[1]
-    print(f"Start in {path}")
-
-    arg = Path(path)
+   
     
   
 
@@ -194,6 +196,6 @@ def main(folder_path):
    
 
 if __name__ == '__main__':
-   main(arg.resolve())
+   main(folder_path.resolve())
 
 
